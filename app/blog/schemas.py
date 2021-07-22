@@ -2,6 +2,9 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
+## for pydentic schema,that is not your actual database,whenever you define pydentic shema 
+# need to override the BaseModel in each class 
+
 class BlogBase(BaseModel):
     title: str
     body: str

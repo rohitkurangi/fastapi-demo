@@ -11,7 +11,7 @@ router = APIRouter(
 
 get_db = database.get_db
 
-
+## add routers for user
 @router.post('/', response_model=schemas.ShowUser)
 def create_user(request: schemas.User, db: Session = Depends(get_db)):
     return user.create(request, db)

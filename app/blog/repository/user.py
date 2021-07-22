@@ -4,7 +4,7 @@ from blog import models, schemas
 from fastapi import HTTPException, status
 from blog.hashing import Hash
 
-
+# for create user and show user
 def create(request: schemas.User, db: Session):
     new_user = models.User(
         name=request.name, email=request.email, password=Hash.bcrypt(request.password))
