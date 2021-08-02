@@ -3,6 +3,7 @@ from blog import  models
 from blog.database import engine
 from blog.routers import blog, user, authentication
 import graphene
+import uvicorn
 from fastapi import FastAPI
 from starlette.graphql import GraphQLApp
 
@@ -24,7 +25,6 @@ from starlette.graphql import GraphQLApp
 
 class Query(graphene.ObjectType):
     hello = graphene.String(name=graphene.String(default_value="stranger"))
-    # cat = graphene.String(name=graphene.String(default_value="stranger"))
     cat = graphene.List(graphene.String, type_=graphene.String()) 
 
 
@@ -58,3 +58,7 @@ def read_root():
     return {"Hello": "graphql + fast api", "name": "rohit"}
 
 app.add_route("/graphql", GraphQLApp(schema=graphene.Schema(query=Query,mutation=Mutation)))
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
